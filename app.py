@@ -5,9 +5,19 @@ from db import items, stores
 
 app = Flask(__name__)
 
+
 @app.get("/store")
 def get_stores():
     return {"stores": list(stores.values())}
+
+
+@app.get("/store/<string:store_id>")
+def get_store(store_id):
+    try:
+        return stores[store_id]
+    except KeyError:
+        #return {"message": "Store not found"}, 404
+        abort(404, message="Store not found.")
 
 @app.post("/store")
 def create_store():
@@ -19,7 +29,6 @@ def create_store():
             400,
             message="Bad request. Ensure variable name is included in the JSON payload",
         )
-
     #error handling with validation that name must be unique.
     for store in store.values():
         if store_data["name"] == store["name"]:
@@ -29,6 +38,28 @@ def create_store():
     store = {**store_data, "id": store_id}
     stores[store_id] = store
     return store, 201
+
+@app.delete("/store/<string:store_id>")
+def delete_store(store_id):
+    try:
+        del stores[store_id]
+        return {"message": "Store deleted."}
+    except KeyError:
+        abort(404, message="Store not found.")
+
+@app.get("/item")
+def get_all_items():
+    return {"items": list(items.values())}
+
+
+@app.get("/item/<string:item_id>")
+def get_item(item_id):
+    try:
+        return items[item_id]
+    except KeyError:
+        abort(404, message="Item not Found.")
+
+
 
 @app.post("/item")
 def create_item(name):
@@ -43,7 +74,7 @@ def create_item(name):
             400,
             message="Bad request. Ensure all variables are in JSON payload",
         )
-        
+
     for item in item.values():
         if (
             item_data["name"] == item["name"]
@@ -60,28 +91,25 @@ def create_item(name):
 
     return item, 201
 
-@app.get("/item")
-def get_all_items():
-    return {"items": list(items.values())}
-
-@app.get("/store/<string:store_id>")
-def get_store(store_id):
+@app.delete("/item/<string:item_id>")
+def delete_item(item_id):
     try:
-        return stores[store_id]
+        del items[item_id]
+        return {"message": "Item deleted."}
     except KeyError:
-        #return {"message": "Store not found"}, 404
-        abort(404, message="Store not found.")
+        abort(404, message="Item not found.")
 
+@app.put("/item/<string:item_id>")
+def update_item(item_id):
+    item_data = request.get_json()
+    if "price" not in item_data or "name" not in item_data:
+        abort(400, message="Bad request. Ensure variables are included in JSON payload.")
+    
+    try: 
+        item = items[item_id]
+        item |= item_data
 
-@app.get("/item/<string:item_id>")
-def get_item(item_id):
-    try:
-        return items[item_id]
+        return item
     except KeyError:
-        abort(404, message="Item not Found.")
-
-
-
-
-
+        abort(404, message="Item not found.")
 
