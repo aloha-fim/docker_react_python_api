@@ -6,8 +6,5 @@ class ItemTags(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), unique=True, nullable=False)
-    store_id = db.Column(db.String(), db.ForeignKey("stores.id"), nullable=False)
-
-    store = db.relationship("StoreModel", back_populates="tags")
-    items = db.relationship("ItemModel", back_populates="tags", secondary="item_tags")
+    item_id = db.Column(db.Integer, db.ForeignKey("items.id"))
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"))

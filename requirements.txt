@@ -1,5 +1,9 @@
 flask
 flask-smorest
+flask-JWT-Extended
 python-dotenv
 sqlalchemy
 flask-sqlalchemy
+passlib
+marshmallow
+gunicorn
