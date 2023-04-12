@@ -55,7 +55,7 @@ def create_app(db_url=None):
             {
                 "description": "The token is not fresh.",
                 "error": "fresh_token_required",
-            },
+            }),
             401,
         )
 
