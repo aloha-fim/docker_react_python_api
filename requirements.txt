@@ -1,6 +1,6 @@
 flask
 flask-smorest
-flask-JWT-Extended
+flask-jwt-extended
 python-dotenv
 sqlalchemy
 flask-sqlalchemy
