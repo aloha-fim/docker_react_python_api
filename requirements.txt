@@ -8,3 +8,4 @@ passlib
 marshmallow
 gunicorn
 flask-migrate
+psycopg2
