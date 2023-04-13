@@ -8,8 +8,11 @@ docker run -d -p 5005:5000 rest-apis-flask-python "run deamon docker"
 
 install flask-migrate
 cmd: flask db init
+flask db migrate
+flask db upgrade
 
-
-
+#change model
+flask db migrate
+flask db upgrade
 
 
