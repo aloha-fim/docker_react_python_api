@@ -1,5 +1,16 @@
 from marshmallow import Schema, fields
 
+class PlainMovieSchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+    description = fields.Str()
+
+
+class PlainRatingSchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+    stars = fields.Int(required=True)    
+
 
 class PlainItemSchema(Schema):
     id = fields.Int(dump_only=True)
@@ -21,6 +32,15 @@ class ItemUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
     #store_id = fields.Int()
+
+
+class MovieSchema(PlainMovieSchema):
+    ratings = fields.List(fields.Nested(PlainRatingSchema()), dump_only=True)
+
+
+class RatingSchema(PlainRatingSchema):
+    movie_id = fields.Int(load_only=True)
+    user_id = fields.Int(load_only=True)
 
 
 class ItemSchema(PlainItemSchema):
