@@ -16,6 +16,8 @@ from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
+from resources.movie import blp as MovieBlueprint
+from resources.rating import blp as RatingBlueprint
 
 def create_app(db_url=None):
     app = Flask(__name__)
@@ -95,6 +97,8 @@ def create_app(db_url=None):
     api.register_blueprint(StoreBlueprint)
     api.register_blueprint(TagBlueprint)
     api.register_blueprint(UserBlueprint)
+    api.register_blueprint(MovieBlueprint)
+    api.register_blueprint(RatingBlueprint)
 
     return app
 
