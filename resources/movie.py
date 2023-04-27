@@ -10,7 +10,7 @@ from schemas import MovieSchema
 blp = Blueprint("Movies", "movies", description="Operations on movies")
 
 
-@blp.route("/movie/<int:movie_id>")
+@blp.route("/api/movie/<int:movie_id>")
 class Movie(MethodView):
     @blp.response(200, MovieSchema)
     def get(self, movie_id):
@@ -23,7 +23,7 @@ class Movie(MethodView):
         db.session.commit()
         return {"message": "Movie deleted."}, 200
 
-@blp.route("/movie")
+@blp.route("/api/movie")
 class MovieList(MethodView):
     @blp.response(200, MovieSchema(many=True))
     def get(self):
