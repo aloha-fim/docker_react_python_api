@@ -9,7 +9,7 @@ from schemas import StoreSchema
 
 blp = Blueprint("Stores", "stores", description="Operations on stores")
 
-
+# lookup or delete by store id lookup
 @blp.route("/store/<int:store_id>")
 class Store(MethodView):
     @blp.response(200, StoreSchema)
@@ -23,6 +23,7 @@ class Store(MethodView):
         db.session.commit()
         return {"message": "Store deleted."}, 200
 
+# get or create store
 @blp.route("/store")
 class StoreList(MethodView):
     @blp.response(200, StoreSchema(many=True))

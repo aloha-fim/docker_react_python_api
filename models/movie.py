@@ -6,6 +6,8 @@ class MovieModel(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=False, nullable=False)
+    title = db.Column(db.String(100), unique=False, nullable=False)
     description = db.Column(db.String)
+    no_of_ratings = db.Column(db.Integer, unique=False, nullable=True)
+    avg_rating = db.Column(db.Integer, unique=False, nullable=True)
     ratings = db.relationship("RatingModel", back_populates="movie", lazy="dynamic", cascade="all, delete")

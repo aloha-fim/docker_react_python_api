@@ -9,7 +9,7 @@ from schemas import MovieSchema, RatingSchema
 
 blp = Blueprint("Movies", "movies", description="Operations on movies")
 
-
+# get or delete movie by movie id
 @blp.route("/api/movie/<int:movie_id>")
 class Movie(MethodView):
     @blp.response(200, MovieSchema)
@@ -23,6 +23,7 @@ class Movie(MethodView):
         db.session.commit()
         return {"message": "Movie deleted."}, 200
 
+# add a movie
 @blp.route("/api/movie")
 class MovieList(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -44,6 +45,7 @@ class MovieList(MethodView):
 
         return movie
     
+# add a rating by movie id    
 @blp.route("/api/movie/<int:movie_id>/rating")
 class RatingsInMovie(MethodView):
     @blp.response(200, RatingSchema(many=True))

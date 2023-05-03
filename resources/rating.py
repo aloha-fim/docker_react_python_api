@@ -10,7 +10,7 @@ from schemas import RatingSchema
 
 blp = Blueprint("Ratings", "ratings", description="Operations on ratings")
 
-
+# get or delete rating by rating id (not useful)
 @blp.route("/api/rating/<int:rating_id>")
 class Rating(MethodView):
     @jwt_required()
@@ -30,7 +30,7 @@ class Rating(MethodView):
         db.session.commit()
         return {"message": "Rating deleted."}
 
-
+# add a rating
 @blp.route("/api/rating")
 class RatingList(MethodView):
     @blp.response(200, RatingSchema(many=True))
