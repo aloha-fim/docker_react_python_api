@@ -11,7 +11,7 @@ from schemas import RatingSchema
 blp = Blueprint("Ratings", "ratings", description="Operations on ratings")
 
 
-@blp.route("/rating/<int:rating_id>")
+@blp.route("/api/rating/<int:rating_id>")
 class Rating(MethodView):
     @jwt_required()
     @blp.response(200, RatingSchema)
@@ -31,7 +31,7 @@ class Rating(MethodView):
         return {"message": "Rating deleted."}
 
 
-@blp.route("/rating")
+@blp.route("/api/rating")
 class RatingList(MethodView):
     @blp.response(200, RatingSchema(many=True))
     def get(self):
