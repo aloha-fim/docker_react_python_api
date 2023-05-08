@@ -65,10 +65,11 @@
 ## turn on virtual environment in Windows
 - py -m venv .venv
 - CTRL+SH P  "terminal venv" 
-- CMD J "activate venv"
+- CTRL J "activate venv"
 
-docker build -t rest-apis-flask-python . "build docker"
-docker run -d -p 5005:5000 rest-apis-flask-python "run deamon docker"
+## run docker
+- docker build -t rest-apis-flask-python . "build docker"
+- docker run -d -p 5005:5000 rest-apis-flask-python "via cl run deamon docker"
 
 install flask-migrate
 cmd: flask db init
