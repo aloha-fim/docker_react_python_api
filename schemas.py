@@ -4,11 +4,11 @@ class PlainMovieSchema(Schema):
     id = fields.Int(dump_only=True)
     title = fields.Str(required=True)
     description = fields.Str()
-
+    no_of_ratings = fields.Int()
+    avg_rating = fields.Int()
 
 class PlainRatingSchema(Schema):
     id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
     stars = fields.Int(required=True)    
 
 
@@ -36,11 +36,12 @@ class ItemUpdateSchema(Schema):
 
 class MovieSchema(PlainMovieSchema):
     ratings = fields.List(fields.Nested(PlainRatingSchema()), dump_only=True)
-
+    
 
 class RatingSchema(PlainRatingSchema):
     movie_id = fields.Int(load_only=True)
     user_id = fields.Int(load_only=True)
+    movie = fields.Nested(PlainMovieSchema(), dump_only=True)
 
 
 class ItemSchema(PlainItemSchema):
@@ -52,7 +53,7 @@ class ItemSchema(PlainItemSchema):
 class StoreSchema(PlainStoreSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
-
+    
 
 class TagSchema(PlainTagSchema):
     store_id = fields.Int(load_only=True)
