@@ -1,6 +1,7 @@
 "# docker_react_python_api" 
 
 # API routes
+## API routes found in /swagger-ui and jwt in /jwt.io
 
 ## Create a Store Event
 ```
@@ -60,6 +61,116 @@
     ]
 ```
 
+## Get list of tags in each Store Event
+```
+- GET /store_event/<PMI Hawaii>/tag
+
+- response [
+        {
+            
+        }
+    ]
+```
+
+## Create a new tag in each Store Event
+```
+- POST /store_event/<PMI Hawaii>/tag
+
+- response [
+        {
+            
+        }
+    ]
+```
+
+## Link an item in a Store Event with a tag from the same Store Event
+```
+- POST /item/<item_id>/tag/<tag_id>
+
+- response [
+        {
+            
+        }
+    ]
+```
+
+## Unlink a tag from an item
+```
+- DELETE /item/<item_id>/tag/<tag_id>
+
+- response [
+        {
+            
+        }
+    ]
+```
+
+## Get tag info
+```
+- GET /tag/<tag_id>
+
+- response [
+        {
+            
+        }
+    ]
+```
+
+## Delete tag
+```
+- DELETE /tag/<tag_id>
+
+- response [
+        {
+             
+        }
+    ]
+```
+
+## Create user accounts given email and password
+```
+- POST /register
+
+- response [
+        {
+             
+        }
+    ]
+```
+
+## Login and get JWT given email and password
+```
+- POST /login
+
+- response [
+        {
+             
+        }
+    ]
+```
+
+## Logout and revoke JWT
+```
+- POST /logout
+
+- response [
+        {
+             
+        }
+    ]
+```
+
+## Get a fresh JWT
+```
+- POST /refresh
+
+- response [
+        {
+             
+        }
+    ]
+```
+
 # Start Up
 
 ## turn on virtual environment in Windows
@@ -71,14 +182,13 @@
 - docker build -t rest-apis-flask-python . "build docker"
 - docker run -d -p 5005:5000 rest-apis-flask-python "via cl run deamon docker"
 
-install flask-migrate
-cmd: flask db init
-flask db migrate
-flask db upgrade
+## install flask-migrate
+- cmd: flask db init
+- flask db migrate
+- flask db upgrade
 
-#change model
-flask db migrate
-flask db upgrade
+# change model
+- flask db migrate
+- flask db upgrade
 
 
-"# python_postgres_api" 
