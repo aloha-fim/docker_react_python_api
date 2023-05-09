@@ -9,4 +9,4 @@ class RatingModel(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey("movies.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     stars = db.Column(db.Integer)
-    movie = db.relationship("MovieModel", back_populates="ratings", lazy="dynamic")
+    movie = db.relationship("MovieModel", back_populates="ratings")
