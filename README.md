@@ -191,4 +191,11 @@
 - flask db migrate
 - flask db upgrade
 
+# infrastructure checks
+- elephant sql check
+- git latest commit check
+- docker hub container and image check
+- render git deploy check
+- render env sql check
+
 
