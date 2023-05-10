@@ -9,3 +9,4 @@ marshmallow
 gunicorn
 flask-migrate
 psycopg2
+flask-cors
